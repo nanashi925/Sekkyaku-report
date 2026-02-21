@@ -284,6 +284,27 @@
     /* ============================================================
        COVER / HERO SECTION
        ============================================================ */
+    .cover-disclaimer {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #e03030;
+      text-align: center;
+      letter-spacing: 0.15em;
+      padding: 18px 24px;
+      border: 3px solid #e03030;
+      border-radius: 8px;
+      background: rgba(224, 48, 48, 0.08);
+      margin-bottom: 28px;
+      text-shadow: 0 0 12px rgba(224, 48, 48, 0.3);
+      z-index: 1;
+      animation: disclaimer-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes disclaimer-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+
     .cover {
       display: flex;
       flex-direction: column;
@@ -1009,6 +1030,12 @@
         padding: 40px 16px;
       }
 
+      .cover-disclaimer {
+        font-size: 1.1rem;
+        padding: 12px 16px;
+        letter-spacing: 0.08em;
+      }
+
       .cover-frame {
         padding: 36px 20px;
       }
@@ -1315,6 +1342,7 @@
            COVER
            ====================================================== -->
       <section class="cover" id="cover">
+        <div class="cover-disclaimer">非公式・個人利用・持ち出し厳禁</div>
         <div class="cover-frame">
           <div class="cover-corner tl"></div>
           <div class="cover-corner tr"></div>
