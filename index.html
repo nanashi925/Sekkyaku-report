@@ -58,6 +58,7 @@
       line-height: 2.0;
       letter-spacing: 0.04em;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     /* ============================================================
@@ -188,12 +189,15 @@
       margin-left: var(--sidebar-width);
       flex: 1;
       min-height: 100vh;
+      overflow-x: hidden;
+      max-width: 100%;
     }
 
     .content-inner {
       max-width: var(--content-max-width);
       margin: 0 auto;
       padding: 0 40px 120px;
+      overflow-x: hidden;
     }
 
     /* ============================================================
@@ -568,6 +572,7 @@
       margin: 24px 0;
       border-radius: 8px;
       border: 1px solid var(--border-subtle);
+      max-width: 100%;
     }
 
     table {
