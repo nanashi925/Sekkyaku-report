@@ -1281,9 +1281,148 @@
     .cover {
       animation: fadeInUp 1.2s ease-out;
     }
+    /* ============================================================
+       LOCK SCREEN
+       ============================================================ */
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0a0a0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .lock-screen.unlocked {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+
+    .lock-icon {
+      font-size: 3rem;
+      margin-bottom: 24px;
+      opacity: 0.7;
+    }
+
+    .lock-title {
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .lock-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .lock-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lock-input {
+      width: 200px;
+      padding: 14px 20px;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+      text-align: center;
+      background: rgba(196, 164, 78, 0.06);
+      border: 1px solid var(--gold-border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      -moz-appearance: textfield;
+    }
+
+    .lock-input::-webkit-outer-spin-button,
+    .lock-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .lock-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(196, 164, 78, 0.15);
+    }
+
+    .lock-input.shake {
+      animation: lock-shake 0.4s ease;
+      border-color: #e03030;
+      box-shadow: 0 0 20px rgba(224, 48, 48, 0.2);
+    }
+
+    @keyframes lock-shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-10px); }
+      40% { transform: translateX(10px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+
+    .lock-btn {
+      padding: 12px 40px;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      color: var(--bg-primary);
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .lock-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(196, 164, 78, 0.3);
+    }
+
+    .lock-error {
+      font-size: 0.8rem;
+      color: #e03030;
+      min-height: 1.2em;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
   </style>
 </head>
-<body>
+<body class="locked">
+
+<!-- ============================================================
+     LOCK SCREEN
+     ============================================================ -->
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-icon">&#x1F512;</div>
+  <div class="lock-title">PRIVATE DOCUMENT</div>
+  <div class="lock-subtitle">閲覧にはパスワードが必要です</div>
+  <div class="lock-form">
+    <input
+      type="password"
+      class="lock-input"
+      id="lockInput"
+      maxlength="8"
+      placeholder="••••"
+      inputmode="numeric"
+      autocomplete="off"
+    >
+    <button class="lock-btn" id="lockBtn">解錠</button>
+    <div class="lock-error" id="lockError"></div>
+  </div>
+</div>
 
 <!-- ============================================================
      HAMBURGER MENU BUTTON (MOBILE)
@@ -3249,6 +3388,56 @@
       scrollTopBtn.classList.remove('visible');
     }
   });
+</script>
+
+<script>
+  // Lock Screen
+  (() => {
+    const h = 'a994696540befd55c96017a162c7ae2685f2010a7fd3224c0ada25241913933b';
+    const lockScreen = document.getElementById('lockScreen');
+    const lockInput = document.getElementById('lockInput');
+    const lockBtn = document.getElementById('lockBtn');
+    const lockError = document.getElementById('lockError');
+
+    async function sha256(text) {
+      const data = new TextEncoder().encode(text);
+      const buf = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function tryUnlock() {
+      const val = lockInput.value;
+      const hash = await sha256(val);
+      if (hash === h) {
+        lockScreen.classList.add('unlocked');
+        document.body.classList.remove('locked');
+        sessionStorage.setItem('unlocked', '1');
+        setTimeout(() => lockScreen.style.display = 'none', 700);
+      } else {
+        lockInput.classList.add('shake');
+        lockError.textContent = 'パスワードが違います';
+        setTimeout(() => {
+          lockInput.classList.remove('shake');
+          lockError.textContent = '';
+        }, 1000);
+        lockInput.value = '';
+        lockInput.focus();
+      }
+    }
+
+    lockBtn.addEventListener('click', tryUnlock);
+    lockInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') tryUnlock();
+    });
+
+    // セッション中は再入力不要
+    if (sessionStorage.getItem('unlocked') === '1') {
+      lockScreen.style.display = 'none';
+      document.body.classList.remove('locked');
+    } else {
+      lockInput.focus();
+    }
+  })();
 </script>
 
 </body>
