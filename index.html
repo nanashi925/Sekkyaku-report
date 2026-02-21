@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>喫茶店接客マニュアル ─ 紳士の嗜み</title>
+
+  <!-- OGP -->
+  <meta property="og:title" content="喫茶店接客マニュアル ─ 紳士の嗜み">
+  <meta property="og:description" content="基礎から応用・緊急時対応まで網羅したホールスタッフのための総合接客指南書。非公式資料。">
+  <meta property="og:image" content="ogp.svg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="喫茶店接客マニュアル ─ 紳士の嗜み">
+  <meta name="twitter:description" content="基礎から応用・緊急時対応まで網羅したホールスタッフのための総合接客指南書。">
+  <meta name="twitter:image" content="ogp.svg">
+
+  <!-- Google Fonts: Noto Serif JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      scrollbar-width: thin;
+      scrollbar-color: #c4a44e #0a0a0f;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #c4a44e, #8a7040);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #d4b85e, #c4a44e);
+    }
+
+    body {
+      font-family: 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', 'MS PMincho', serif;
+      background-color: #0a0a0f;
+      color: #e8dcc8;
+      line-height: 2.0;
+      letter-spacing: 0.04em;
+      min-height: 100vh;
+    }
+
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+       ============================================================ */
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #0e0e16;
+      --bg-card: #111119;
+      --bg-card-hover: #16161f;
+      --bg-sidebar: #08080d;
+      --text-primary: #e8dcc8;
+      --text-secondary: #b8a88a;
+      --text-muted: #8a7a6a;
+      --gold: #c4a44e;
+      --gold-light: #dfc07a;
+      --gold-dark: #8a7030;
+      --gold-glow: rgba(196, 164, 78, 0.15);
+      --gold-border: rgba(196, 164, 78, 0.25);
+      --red-accent: #a04040;
+      --green-accent: #4a8a5a;
+      --border-subtle: rgba(196, 164, 78, 0.08);
+      --shadow-gold: 0 0 30px rgba(196, 164, 78, 0.05);
+      --content-max-width: 860px;
+      --sidebar-width: 280px;
+    }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .page-wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--gold-border);
+      overflow-y: auto;
+      z-index: 100;
+      padding: 32px 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold-dark) transparent;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--gold-dark);
+      border-radius: 2px;
+    }
+
+    .sidebar-header {
+      padding: 0 24px 24px;
+      border-bottom: 1px solid var(--gold-border);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 0 12px;
+    }
+
+    .nav-list li {
+      margin-bottom: 2px;
+    }
+
+    .nav-list a {
+      display: block;
+      padding: 8px 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      border-left: 2px solid transparent;
+    }
+
+    .nav-list a:hover {
+      color: var(--gold-light);
+      background: var(--gold-glow);
+      border-left-color: var(--gold);
+    }
+
+    .nav-list a.active {
+      color: var(--gold);
+      background: var(--gold-glow);
+      border-left-color: var(--gold);
+      font-weight: 500;
+    }
+
+    .nav-section-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      padding: 16px 12px 6px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-height: 100vh;
+    }
+
+    .content-inner {
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+      padding: 0 40px 120px;
+    }
+
+    /* ============================================================
+       HAMBURGER MENU (MOBILE)
+       ============================================================ */
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 200;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--gold-border);
+      border-radius: 6px;
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--gold);
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(4.5px, 4.5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(4.5px, -4.5px);
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 90;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    /* ============================================================
+       COVER / HERO SECTION
+       ============================================================ */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(196, 164, 78, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 80%, rgba(196, 164, 78, 0.02) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .cover-frame {
+      position: relative;
+      border: 1px solid var(--gold-border);
+      padding: 80px 60px;
+      max-width: 680px;
+      width: 100%;
+    }
+
+    .cover-frame::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(196, 164, 78, 0.1);
+      pointer-events: none;
+    }
+
+    .cover-ornament {
+      font-size: 1.8rem;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 24px;
+      letter-spacing: 0.5em;
+    }
+
+    .cover-icon {
+      font-size: 2.4rem;
+      margin-bottom: 32px;
+      opacity: 0.7;
+    }
+
+    .cover-title-sub {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.3em;
+      margin-bottom: 16px;
+    }
+
+    .cover-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(196, 164, 78, 0.2);
+    }
+
+    .cover-subtitle {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      letter-spacing: 0.25em;
+      margin-bottom: 40px;
+    }
+
+    .cover-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      color: var(--gold);
+      opacity: 0.4;
+    }
+
+    .cover-divider span {
+      font-size: 0.7rem;
+    }
+
+    .cover-divider::before,
+    .cover-divider::after {
+      content: '';
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .cover-description {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 2.2;
+      letter-spacing: 0.08em;
+    }
+
+    .cover-corner {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: var(--gold);
+      border-style: solid;
+      opacity: 0.5;
+    }
+    .cover-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .cover-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .cover-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+    .cover-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    /* ============================================================
+       SECTION STYLING
+       ============================================================ */
+    .section {
+      padding: 80px 0 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .section-chapter-num {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      opacity: 0.7;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+    }
+
+    .section-tagline {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      font-style: italic;
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 32px 0;
+      color: var(--gold);
+      opacity: 0.3;
+      font-size: 0.6rem;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* ============================================================
+       CONTENT ELEMENTS
+       ============================================================ */
+    .subsection {
+      margin-bottom: 48px;
+    }
+
+    .subsection-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--gold-border);
+      letter-spacing: 0.1em;
+    }
+
+    .sub-subsection-title {
+      font-size: 1.0rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin: 24px 0 12px;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+    }
+
+    p {
+      margin-bottom: 16px;
+      text-align: justify;
+      font-weight: 300;
+    }
+
+    /* Card style */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 24px 0;
+      box-shadow: var(--shadow-gold);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--gold-border);
+      box-shadow: 0 0 40px rgba(196, 164, 78, 0.08);
+    }
+
+    .card-title {
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 12px;
+      letter-spacing: 0.08em;
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(196, 164, 78, 0.06), rgba(196, 164, 78, 0.02));
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+
+    /* Warning box */
+    .warning-box {
+      background: linear-gradient(135deg, rgba(160, 64, 64, 0.08), rgba(160, 64, 64, 0.02));
+      border-left: 3px solid var(--red-accent);
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .warning-box .warning-label {
+      color: var(--red-accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    /* Point box */
+    .point-box {
+      background: linear-gradient(135deg, rgba(74, 138, 90, 0.08), rgba(74, 138, 90, 0.02));
+      border-left: 3px solid var(--green-accent);
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .point-box .point-label {
+      color: var(--green-accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    /* Ordered & unordered lists */
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      font-weight: 300;
+    }
+
+    li::marker {
+      color: var(--gold);
+    }
+
+    /* Tables */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    thead th {
+      background: rgba(196, 164, 78, 0.1);
+      color: var(--gold);
+      font-weight: 600;
+      padding: 14px 18px;
+      text-align: left;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid var(--gold-border);
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+      font-weight: 300;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: rgba(196, 164, 78, 0.03);
+    }
+
+    .incorrect {
+      color: var(--red-accent);
+      font-weight: 400;
+    }
+
+    .correct {
+      color: var(--green-accent);
+      font-weight: 400;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.08em;
+      vertical-align: middle;
+    }
+    .badge-gold {
+      background: rgba(196, 164, 78, 0.15);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+    }
+    .badge-red {
+      background: rgba(160, 64, 64, 0.15);
+      color: var(--red-accent);
+      border: 1px solid rgba(160, 64, 64, 0.3);
+    }
+
+    /* Flow steps */
+    .flow-step {
+      display: flex;
+      gap: 20px;
+      margin: 24px 0;
+      align-items: flex-start;
+    }
+
+    .flow-step-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(196, 164, 78, 0.1);
+      border: 1px solid var(--gold-border);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .flow-step-content {
+      flex: 1;
+      padding-top: 6px;
+    }
+
+    .flow-step-title {
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .flow-step-detail {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .flow-connector {
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      padding: 4px 0;
+    }
+
+    .flow-connector::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 20px;
+      background: linear-gradient(180deg, var(--gold-border), transparent);
+    }
+
+    /* Quote block */
+    .butler-quote {
+      text-align: center;
+      padding: 32px;
+      margin: 32px 0;
+      position: relative;
+    }
+
+    .butler-quote::before {
+      content: '\201C';
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.2;
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: serif;
+    }
+
+    .butler-quote p {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      letter-spacing: 0.12em;
+      line-height: 2.4;
+      text-align: center;
+    }
+
+    .butler-quote .quote-author {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 16px;
+      letter-spacing: 0.15em;
+    }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .checklist li {
+      padding: 8px 0 8px 32px;
+      position: relative;
+    }
+
+    .checklist li::before {
+      content: '\2610';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    /* Big number card */
+    .big-num-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 16px 0;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color 0.3s ease;
+    }
+
+    .big-num-card:hover {
+      border-color: var(--gold-border);
+    }
+
+    .big-num {
+      flex-shrink: 0;
+      font-size: 2.4rem;
+      font-weight: 200;
+      color: var(--gold);
+      opacity: 0.6;
+      line-height: 1;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    .big-num-content h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+    }
+
+    .big-num-content p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .big-num-content .usage {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding-left: 12px;
+      border-left: 2px solid var(--border-subtle);
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: var(--bg-card);
+      border: 1px solid rgba(160, 64, 64, 0.2);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .disclaimer-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--red-accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+    }
+
+    .disclaimer p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    /* Scroll to top */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 50;
+      text-decoration: none;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      background: var(--gold);
+      color: var(--bg-primary);
+    }
+
+    /* Colophon */
+    .colophon {
+      text-align: center;
+      padding: 60px 0;
+      border-top: 1px solid var(--gold-border);
+      margin-top: 80px;
+    }
+
+    .colophon-ornament {
+      color: var(--gold);
+      opacity: 0.3;
+      font-size: 0.8rem;
+      letter-spacing: 0.5em;
+      margin-bottom: 24px;
+    }
+
+    .colophon h3 {
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .colophon p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 6px;
+      font-weight: 300;
+    }
+
+    /* Bow angle diagram */
+    .bow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 24px 0;
+    }
+
+    .bow-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: border-color 0.3s ease;
+    }
+
+    .bow-card:hover {
+      border-color: var(--gold-border);
+    }
+
+    .bow-angle {
+      font-size: 2.0rem;
+      font-weight: 200;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .bow-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .bow-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* Emergency contact table */
+    .emergency-table td:first-child {
+      font-weight: 500;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-overlay.active {
+        display: block;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .content-inner {
+        padding: 0 24px 80px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cover-title {
+        font-size: 1.8rem;
+      }
+
+      .cover-subtitle {
+        font-size: 0.85rem;
+      }
+
+      .cover-frame {
+        padding: 48px 28px;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      .bow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      table {
+        font-size: 0.8rem;
+      }
+
+      thead th, tbody td {
+        padding: 10px 12px;
+      }
+
+      .flow-step {
+        gap: 14px;
+      }
+
+      .big-num-card {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .big-num {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cover-title {
+        font-size: 1.4rem;
+      }
+
+      .content-inner {
+        padding: 0 16px 60px;
+      }
+
+      .section {
+        padding: 60px 0 20px;
+      }
+    }
+
+    /* ============================================================
+       ANIMATION KEYFRAMES
+       ============================================================ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cover {
+      animation: fadeInUp 1.2s ease-out;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HAMBURGER MENU BUTTON (MOBILE)
+     ============================================================ -->
+<button class="hamburger" id="hamburger" aria-label="メニューを開く">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ============================================================
+     SIDEBAR NAVIGATION
+     ============================================================ -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">目次</div>
+    <div class="sidebar-subtitle">Table of Contents</div>
+  </div>
+  <ul class="nav-list">
+    <li><a href="#cover">表紙</a></li>
+    <li><a href="#disclaimer">免責事項</a></li>
+    <li><a href="#foreword">序文</a></li>
+    <li class="nav-section-label">基礎編</li>
+    <li><a href="#ch1">第一章　接客の心構え</a></li>
+    <li><a href="#ch2">第二章　接客八大用語</a></li>
+    <li><a href="#ch3">第三章　正しい敬語</a></li>
+    <li class="nav-section-label">実践編</li>
+    <li><a href="#ch4">第四章　基本接客フロー</a></li>
+    <li><a href="#ch5">第五章　商品提供のマナー</a></li>
+    <li><a href="#ch6">第六章　初日の心得</a></li>
+    <li class="nav-section-label">応用・緊急編</li>
+    <li><a href="#ch7">第七章　応用接客</a></li>
+    <li><a href="#ch8">第八章　クレーム対応</a></li>
+    <li><a href="#ch9">第九章　緊急時の対応</a></li>
+    <li class="nav-section-label">資料</li>
+    <li><a href="#appendix">付録</a></li>
+    <li><a href="#colophon">奥付</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+<main class="page-wrapper">
+  <div class="main-content">
+    <div class="content-inner">
+
+      <!-- ======================================================
+           COVER
+           ====================================================== -->
+      <section class="cover" id="cover">
+        <div class="cover-frame">
+          <div class="cover-corner tl"></div>
+          <div class="cover-corner tr"></div>
+          <div class="cover-corner bl"></div>
+          <div class="cover-corner br"></div>
+
+          <div class="cover-ornament">&#x2726; &#x2726; &#x2726;</div>
+          <div class="cover-icon">&#9749;</div>
+          <div class="cover-title-sub">HALL SERVICE GUIDE</div>
+          <h1 class="cover-title">喫茶店接客マニュアル</h1>
+          <div class="cover-subtitle">紳士の嗜み ── ホールサービスの手引き</div>
+          <div class="cover-divider">
+            <span>&#x25C6;</span>
+          </div>
+          <p class="cover-description">
+            基礎から応用、通常運転から緊急時対応まで<br>
+            ホールスタッフとして必要な接客の全てを網羅した<br>
+            総合接客指南書
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           DISCLAIMER
+           ====================================================== -->
+      <section class="section visible" id="disclaimer">
+        <div class="disclaimer">
+          <div class="disclaimer-title">&#9888; 免責事項 ─ DISCLAIMER</div>
+          <p>
+            本資料は <strong>Claude Code（Anthropic社 AI）</strong>により生成された<strong>非公式の接客マニュアル</strong>です。
+          </p>
+          <p>
+            制作者：<strong>名那詩</strong>（飲食店未経験・店頭未着任）
+          </p>
+          <p>
+            特定の店舗・企業の公式資料ではありません。あくまで一般的な喫茶店ホールサービスの基礎知識をまとめたものであり、<br>
+            実際の業務においては勤務先の公式マニュアル・上長の指示を最優先としてください。
+          </p>
+          <p>
+            本資料の内容に基づく行動によって生じたいかなる損害についても、制作者は責任を負いません。
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           FOREWORD
+           ====================================================== -->
+      <section class="section" id="foreword">
+        <div class="section-header">
+          <div class="section-chapter-num">FOREWORD</div>
+          <h2 class="section-title">序文</h2>
+          <div class="section-tagline">── 一杯の珈琲に、最上の時間を添えて ──</div>
+        </div>
+
+        <div class="butler-quote">
+          <p>
+            お客様がお求めになるのは、珈琲だけではございません。<br>
+            香り立つ一杯とともに流れる、穏やかな時間。<br>
+            それを形づくるのが、我々ホールスタッフの所作でございます。
+          </p>
+        </div>
+
+        <p>
+          喫茶店とは、単に飲食物を提供する場ではありません。お客様がひとときの安寧を求め、日常の喧騒から離れて静かな時間を過ごされる場所です。その空間の質を左右するのは、調度品でも内装でもなく──そこに立つスタッフの一挙手一投足に他なりません。
+        </p>
+        <p>
+          本書は、喫茶店のホールスタッフとして求められる接客の基礎から応用までを体系的にまとめた指南書です。接客八大用語、正しい敬語の運用、商品提供の作法、クレーム対応、そして緊急時の対処法に至るまで──どの店舗においても通用する普遍的な接客の原則を記しています。
+        </p>
+        <p>
+          経験の有無は問いません。大切なのは、お客様の前に立つその瞬間から「この方に最上の時間をお届けしたい」という心を持ち続けることです。本書がその一助となれば、これに勝る喜びはございません。
+        </p>
+
+        <div class="section-divider"><span>&#x25C6;</span></div>
+      </section>
+
+      <!-- ======================================================
+           CHAPTER 1: 接客の心構え
+           ====================================================== -->
+      <section class="section" id="ch1">
+        <div class="section-header">
+          <div class="section-chapter-num">CHAPTER 01</div>
+          <h2 class="section-title">第一章　接客の心構え</h2>
+          <div class="section-tagline">── 一流の接客は、心構えから始まる ──</div>
+        </div>
+
+        <!-- 1-1 ホスピタリティの本質 -->
+        <div class="subsection">
+          <h3 class="subsection-title">一、ホスピタリティの本質</h3>
+          <p>
+            ホスピタリティとは「おもてなしの心」と訳されますが、その本質は「お客様が言葉にされる前に、お望みを察すること」にあります。水が少なくなればお注ぎし、寒そうにされていればお声がけをし、お連れ様をお待ちの様子であれば新聞や雑誌をお持ちする──こうした先回りの気配りこそが、喫茶店のホールスタッフに求められるホスピタリティです。
+          </p>
+          <div class="highlight-box">
+            <p>
+              <strong>心得：</strong>「サービス」は均一に提供されるもの。「ホスピタリティ」はお客様お一人おひとりに合わせて変化するもの。マニュアル通りの対応を超えた、その場その時にふさわしい心遣いを常に考えましょう。
+            </p>
+          </div>
+        </div>
+
+        <!-- 1-2 身だしなみ -->
+        <div class="subsection">
+          <h3 class="subsection-title">二、身だしなみ</h3>
+          <p>
+            お客様が最初に目にするのは、あなた自身です。清潔感のある身だしなみは、お客様に安心感と信頼感を与えます。以下の項目を出勤前に必ず確認してください。
+          </p>
+
+          <div class="card">
+            <h4 class="card-title">身だしなみチェック項目</h4>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>項目</th>
+                    <th>基準</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>髪型</strong></td>
+                    <td>清潔に整え、長い場合はまとめる。前髪が目にかからないこと。派手な髪色は避け、自然な色味を保つ。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>顔</strong></td>
+                    <td>髭は綺麗に剃る（または整える）。化粧は清潔感のあるナチュラルなもの。香水は無香料か極めて控えめに。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>制服・エプロン</strong></td>
+                    <td>シワや汚れがないこと。ボタンは全て留める。エプロンは正しい位置で結ぶ。ネームプレートは所定の位置に。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>手・爪</strong></td>
+                    <td>爪は短く切り揃える。ネイルは原則禁止。手は常に清潔に保ち、業務前・トイレ後・金銭授受後は必ず手洗いを行う。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>靴</strong></td>
+                    <td>指定の靴を履く。汚れがないこと。滑りにくい靴底であること。かかとを踏まない。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>アクセサリー</strong></td>
+                    <td>結婚指輪以外のアクセサリーは原則外す。ピアス・ネックレス・ブレスレットは衛生面・安全面から着用しない。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>匂い</strong></td>
+                    <td>タバコ・強い香水の匂いは厳禁。喫茶店では珈琲の香りが命であり、それを妨げる匂いは許されない。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="warning-box">
+            <div class="warning-label">&#9888; 注意</div>
+            <p>
+              身だしなみは「自分がどう見せたいか」ではなく「お客様にどう映るか」が基準です。鏡の前で自分を客観的に見つめる習慣をつけましょう。
+            </p>
+          </div>
+        </div>
+
+        <!-- 1-3 姿勢・立ち居振る舞い -->
+        <div class="subsection">
+          <h3 class="subsection-title">三、姿勢と立ち居振る舞い</h3>
+
+          <h4 class="sub-subsection-title">基本の立ち姿勢</h4>
+          <p>
+            背筋を伸ばし、顎を軽く引きます。両手は体の前で軽く重ね（右手を上に左手を下に）、足は肩幅より狭く揃えます。体重はかかとに均等にかけ、片足に偏らないようにします。壁や柱にもたれかかることは絶対にしてはいけません。
+          </p>
+
+          <h4 class="sub-subsection-title">お辞儀の三段階</h4>
+          <p>お辞儀は場面に応じて三種類を使い分けます。いずれも腰から折り、首だけを下げる「首振りお辞儀」にならないよう注意してください。</p>
+
+          <div class="bow-grid">
+            <div class="bow-card">
+              <div class="bow-angle">15&deg;</div>
+              <div class="bow-name">会釈</div>
+              <div class="bow-desc">
+                すれ違い時の挨拶や<br>
+                軽い応答の際に。<br>
+                「失礼いたします」<br>
+                「かしこまりました」
+              </div>
+            </div>
+            <div class="bow-card">
+              <div class="bow-angle">30&deg;</div>
+              <div class="bow-name">敬礼（中礼）</div>
+              <div class="bow-desc">
+                お迎え・お見送り・<br>
+                感謝を伝える際に。<br>
+                「いらっしゃいませ」<br>
+                「ありがとうございました」
+              </div>
+            </div>
+            <div class="bow-card">
+              <div class="bow-angle">45&deg;</div>
+              <div class="bow-name">最敬礼</div>
+              <div class="bow-desc">
+                深い謝罪や<br>
+                特別な感謝の際に。<br>
+                「大変申し訳<br>
+                ございませんでした」
+              </div>
+            </div>
+          </div>
+
+          <div class="point-box">
+            <div class="point-label">&#9733; ポイント</div>
+            <p>
+              お辞儀の際は「語先後礼（ごせんごれい）」を心がけましょう。言葉を述べ終えてからお辞儀をすることで、お客様の目を見て言葉をお伝えした後に丁寧に頭を下げる──という美しい所作になります。言葉とお辞儀を同時に行うと、声が床に向かい、お客様に届きません。
+            </p>
+          </div>
+
+          <h4 class="sub-subsection-title">歩き方</h4>
+          <p>
+            背筋を伸ばし、すり足にならないよう適度に足を上げて歩きます。ただし、ドタドタと音を立てる歩き方は厳禁です。急いでいるときも走らず、歩幅をやや広げて速足で対応します。お客様の間を通る際は「失礼いたします」と一声かけ、会釈をしてから通過します。
+          </p>
+
+          <h4 class="sub-subsection-title">手の使い方</h4>
+          <p>
+            方向を示す際は、手のひらを上に向け、指を揃えて示します。指を一本立てて指し示すのは失礼にあたります。物をお渡しする際は必ず両手を使い、片手で無造作に渡すことのないようにします。
+          </p>
+
+          <h4 class="sub-subsection-title">表情</h4>
+          <p>
+            口角をわずかに上げた、自然な微笑みを保ちます。大げさな笑顔は不自然ですが、無表情もまたお客様を不安にさせます。目元で微笑む「目笑い」を意識すると、マスク着用時にも温かみが伝わります。
+          </p>
+        </div>
+
+        <!-- 1-4 声 -->
+        <div class="subsection">
+          <h3 class="subsection-title">四、声の出し方</h3>
+          <p>
+            接客において声は重要な道具です。以下の点を意識してください。
+          </p>
+          <ul>
+            <li><strong>声量：</strong>大きすぎず小さすぎず、お客様に確実に届く声量で。喫茶店は落ち着いた空間ですので、怒鳴るような声は禁物です。</li>
+            <li><strong>速度：</strong>早口にならないよう、やや落ち着いたテンポで話します。特にご注文の復唱は、お客様が聞き取れるようゆっくりと。</li>
+            <li><strong>声のトーン：</strong>明るく、柔らかいトーンを心がけます。低すぎると暗い印象を、高すぎると軽い印象を与えます。</li>
+            <li><strong>語尾：</strong>語尾まではっきりと発音します。語尾が消える話し方は自信がないように聞こえます。</li>
+            <li><strong>抑揚：</strong>単調にならないよう、適度な抑揚をつけます。ただし、過度な抑揚は馴れ馴れしい印象になります。</li>
+          </ul>
+        </div>
+
+        <div class="section-divider"><span>&#x25C6;</span></div>
+      </section>
+
+      <!-- ======================================================
+           以降の章はここに追加していきます
+           ====================================================== -->
+
+    </div><!-- /.content-inner -->
+  </div><!-- /.main-content -->
+</main>
+
+<!-- ============================================================
+     SCROLL TO TOP BUTTON
+     ============================================================ -->
+<a href="#cover" class="scroll-top" id="scrollTop" aria-label="ページ上部へ戻る">&#x25B2;</a>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+  // ---- Hamburger menu ----
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+  });
+
+  overlay.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+  });
+
+  // Close sidebar on nav link click (mobile)
+  document.querySelectorAll('.nav-list a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        hamburger.classList.remove('active');
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+      }
+    });
+  });
+
+  // ---- Intersection Observer for fade-in ----
+  const sections = document.querySelectorAll('.section');
+  const observerOptions = {
+    threshold: 0.08,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => {
+    sectionObserver.observe(section);
+  });
+
+  // ---- Active nav link on scroll ----
+  const navLinks = document.querySelectorAll('.nav-list a');
+  const allSections = document.querySelectorAll('section[id]');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '-80px 0px -60% 0px' });
+
+  allSections.forEach(section => {
+    navObserver.observe(section);
+  });
+
+  // ---- Scroll to top button ----
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#08080f"/>
+      <stop offset="50%" style="stop-color:#0f0f1a"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37"/>
+      <stop offset="50%" style="stop-color:#c4a44e"/>
+      <stop offset="100%" style="stop-color:#b8972e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle pattern overlay -->
+  <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+    <circle cx="15" cy="15" r="0.5" fill="#c4a44e" opacity="0.08"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <!-- Outer border -->
+  <rect x="24" y="24" width="1152" height="582" fill="none" stroke="#c4a44e" stroke-width="1.5" opacity="0.7" rx="2"/>
+  <!-- Inner border -->
+  <rect x="36" y="36" width="1128" height="558" fill="none" stroke="#c4a44e" stroke-width="0.75" opacity="0.4" rx="1"/>
+
+  <!-- Corner ornaments - Top Left -->
+  <g opacity="0.8" filter="url(#softglow)">
+    <line x1="24" y1="80" x2="70" y2="80" stroke="#c4a44e" stroke-width="1.5"/>
+    <line x1="80" y1="24" x2="80" y2="70" stroke="#c4a44e" stroke-width="1.5"/>
+    <circle cx="80" cy="80" r="4" fill="none" stroke="#c4a44e" stroke-width="1"/>
+    <circle cx="80" cy="80" r="1.5" fill="#c4a44e"/>
+  </g>
+  <!-- Corner ornaments - Top Right -->
+  <g opacity="0.8" filter="url(#softglow)">
+    <line x1="1176" y1="80" x2="1130" y2="80" stroke="#c4a44e" stroke-width="1.5"/>
+    <line x1="1120" y1="24" x2="1120" y2="70" stroke="#c4a44e" stroke-width="1.5"/>
+    <circle cx="1120" cy="80" r="4" fill="none" stroke="#c4a44e" stroke-width="1"/>
+    <circle cx="1120" cy="80" r="1.5" fill="#c4a44e"/>
+  </g>
+  <!-- Corner ornaments - Bottom Left -->
+  <g opacity="0.8" filter="url(#softglow)">
+    <line x1="24" y1="550" x2="70" y2="550" stroke="#c4a44e" stroke-width="1.5"/>
+    <line x1="80" y1="606" x2="80" y2="560" stroke="#c4a44e" stroke-width="1.5"/>
+    <circle cx="80" cy="550" r="4" fill="none" stroke="#c4a44e" stroke-width="1"/>
+    <circle cx="80" cy="550" r="1.5" fill="#c4a44e"/>
+  </g>
+  <!-- Corner ornaments - Bottom Right -->
+  <g opacity="0.8" filter="url(#softglow)">
+    <line x1="1176" y1="550" x2="1130" y2="550" stroke="#c4a44e" stroke-width="1.5"/>
+    <line x1="1120" y1="606" x2="1120" y2="560" stroke="#c4a44e" stroke-width="1.5"/>
+    <circle cx="1120" cy="550" r="4" fill="none" stroke="#c4a44e" stroke-width="1"/>
+    <circle cx="1120" cy="550" r="1.5" fill="#c4a44e"/>
+  </g>
+
+  <!-- Decorative line - top -->
+  <line x1="200" y1="160" x2="1000" y2="160" stroke="#c4a44e" stroke-width="0.5" opacity="0.4"/>
+  <circle cx="600" cy="160" r="3" fill="#c4a44e" opacity="0.5"/>
+  <line x1="580" y1="160" x2="560" y2="160" stroke="#c4a44e" stroke-width="1" opacity="0.6"/>
+  <line x1="620" y1="160" x2="640" y2="160" stroke="#c4a44e" stroke-width="1" opacity="0.6"/>
+
+  <!-- Coffee cup icon -->
+  <g transform="translate(600, 120)" opacity="0.6" filter="url(#softglow)">
+    <ellipse cx="0" cy="0" rx="18" ry="6" fill="none" stroke="#c4a44e" stroke-width="1"/>
+    <path d="M-18,0 L-15,20 Q0,28 15,20 L18,0" fill="none" stroke="#c4a44e" stroke-width="1"/>
+    <path d="M18,4 Q30,4 28,14 Q26,20 18,16" fill="none" stroke="#c4a44e" stroke-width="1"/>
+    <!-- Steam -->
+    <path d="M-6,-8 Q-4,-16 -6,-22" fill="none" stroke="#c4a44e" stroke-width="0.8" opacity="0.5"/>
+    <path d="M0,-10 Q2,-18 0,-26" fill="none" stroke="#c4a44e" stroke-width="0.8" opacity="0.5"/>
+    <path d="M6,-8 Q8,-16 6,-22" fill="none" stroke="#c4a44e" stroke-width="0.8" opacity="0.5"/>
+  </g>
+
+  <!-- Main title -->
+  <text x="600" y="230" text-anchor="middle" fill="#c4a44e" font-family="'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif" font-size="56" font-weight="700" filter="url(#glow)">喫茶店接客マニュアル</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="290" text-anchor="middle" fill="#e8dcc8" font-family="'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif" font-size="22" font-weight="400" letter-spacing="8" opacity="0.9">紳士の嗜み ── ホールサービスの手引き</text>
+
+  <!-- Decorative divider -->
+  <g opacity="0.5">
+    <line x1="350" y1="320" x2="520" y2="320" stroke="#c4a44e" stroke-width="0.75"/>
+    <text x="600" y="326" text-anchor="middle" fill="#c4a44e" font-family="serif" font-size="16">◆</text>
+    <line x1="680" y1="320" x2="850" y2="320" stroke="#c4a44e" stroke-width="0.75"/>
+  </g>
+
+  <!-- Description -->
+  <text x="600" y="370" text-anchor="middle" fill="#b8a88a" font-family="'Noto Serif JP', 'Yu Mincho', serif" font-size="16" letter-spacing="4" opacity="0.8">基礎から応用・緊急時対応まで網羅した</text>
+  <text x="600" y="400" text-anchor="middle" fill="#b8a88a" font-family="'Noto Serif JP', 'Yu Mincho', serif" font-size="16" letter-spacing="4" opacity="0.8">ホールスタッフのための総合接客指南書</text>
+
+  <!-- Decorative line - bottom -->
+  <line x1="200" y1="440" x2="1000" y2="440" stroke="#c4a44e" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Footer info -->
+  <text x="600" y="490" text-anchor="middle" fill="#8a7a6a" font-family="'Noto Serif JP', 'Yu Mincho', serif" font-size="13" letter-spacing="2" opacity="0.7">非公式資料 ─ Claude Code により生成</text>
+  <text x="600" y="520" text-anchor="middle" fill="#8a7a6a" font-family="'Noto Serif JP', 'Yu Mincho', serif" font-size="12" letter-spacing="2" opacity="0.5">制作：名那詩</text>
+
+  <!-- Bottom decorative element -->
+  <g opacity="0.3">
+    <line x1="540" y1="560" x2="590" y2="560" stroke="#c4a44e" stroke-width="0.75"/>
+    <circle cx="600" cy="560" r="2" fill="#c4a44e"/>
+    <line x1="610" y1="560" x2="660" y2="560" stroke="#c4a44e" stroke-width="0.75"/>
+  </g>
+</svg>
