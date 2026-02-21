@@ -974,22 +974,59 @@
         line-height: 1.9;
       }
 
-      .cover-title {
-        font-size: 1.8rem;
-        letter-spacing: 0.06em;
-      }
-
-      .cover-subtitle {
-        font-size: 0.82rem;
-        letter-spacing: 0.1em;
+      .cover {
+        padding: 40px 16px;
       }
 
       .cover-frame {
-        padding: 48px 24px;
+        padding: 36px 20px;
+      }
+
+      .cover-frame::before {
+        inset: 5px;
+      }
+
+      .cover-ornament {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+        letter-spacing: 0.3em;
+      }
+
+      .cover-icon {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+      }
+
+      .cover-title-sub {
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        margin-bottom: 10px;
+      }
+
+      .cover-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+      }
+
+      .cover-subtitle {
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+      }
+
+      .cover-divider {
+        margin-bottom: 20px;
+      }
+
+      .cover-divider::before,
+      .cover-divider::after {
+        width: 50px;
       }
 
       .cover-description {
-        font-size: 0.8rem;
+        font-size: 0.76rem;
+        line-height: 2.0;
       }
 
       .section-header {
@@ -1090,18 +1127,54 @@
     }
 
     @media (max-width: 480px) {
-      .cover-title {
-        font-size: 1.4rem;
-        letter-spacing: 0.04em;
-      }
-
-      .cover-subtitle {
-        font-size: 0.75rem;
-        letter-spacing: 0.06em;
+      .cover {
+        padding: 24px 12px;
       }
 
       .cover-frame {
-        padding: 36px 18px;
+        padding: 28px 16px;
+      }
+
+      .cover-ornament {
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      .cover-icon {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+      }
+
+      .cover-title-sub {
+        font-size: 0.6rem;
+        margin-bottom: 6px;
+      }
+
+      .cover-title {
+        font-size: 1.35rem;
+        letter-spacing: 0.04em;
+        margin-bottom: 6px;
+      }
+
+      .cover-subtitle {
+        font-size: 0.7rem;
+        letter-spacing: 0.06em;
+        margin-bottom: 14px;
+      }
+
+      .cover-divider {
+        margin-bottom: 14px;
+        gap: 10px;
+      }
+
+      .cover-divider::before,
+      .cover-divider::after {
+        width: 36px;
+      }
+
+      .cover-description {
+        font-size: 0.72rem;
+        line-height: 1.9;
       }
 
       .content-inner {
