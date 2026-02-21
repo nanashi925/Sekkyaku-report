@@ -184,6 +184,22 @@
       font-weight: 600;
     }
 
+    .nav-sublist {
+      list-style: none;
+      padding: 0 0 0 12px;
+      margin: 0;
+    }
+
+    .nav-sublist li {
+      margin-bottom: 1px;
+    }
+
+    .nav-sublist a {
+      font-size: 0.72rem;
+      padding: 5px 12px;
+      opacity: 0.8;
+    }
+
     /* Main Content */
     .main-content {
       margin-left: var(--sidebar-width);
@@ -1268,7 +1284,13 @@
     <li><a href="#ch8">第八章　クレーム対応</a></li>
     <li><a href="#ch9">第九章　緊急時の対応</a></li>
     <li class="nav-section-label">資料</li>
-    <li><a href="#appendix">付録</a></li>
+    <li><a href="#appendix">付録</a>
+      <ul class="nav-sublist">
+        <li><a href="#appendix-1">一、出勤前チェックリスト</a></li>
+        <li><a href="#appendix-2">二、接客フローチェックリスト</a></li>
+        <li><a href="#appendix-3">三、接客用語集</a></li>
+      </ul>
+    </li>
     <li><a href="#colophon">奥付</a></li>
   </ul>
 </nav>
@@ -2974,7 +2996,7 @@
         </div>
 
         <!-- 付録1 接客チェックリスト -->
-        <div class="subsection">
+        <div class="subsection" id="appendix-1">
           <h3 class="subsection-title">一、出勤前チェックリスト</h3>
           <ul class="checklist">
             <li>髪型は整っているか（前髪が目にかかっていないか）</li>
@@ -2991,7 +3013,7 @@
         </div>
 
         <!-- 付録2 接客フローチェックリスト -->
-        <div class="subsection">
+        <div class="subsection" id="appendix-2">
           <h3 class="subsection-title">二、接客フローチェックリスト</h3>
           <ul class="checklist">
             <li>お客様の入店に気づき、すぐに「いらっしゃいませ」と言えたか</li>
@@ -3009,7 +3031,7 @@
         </div>
 
         <!-- 付録3 用語集 -->
-        <div class="subsection">
+        <div class="subsection" id="appendix-3">
           <h3 class="subsection-title">三、接客用語集</h3>
           <div class="table-wrapper">
             <table>
